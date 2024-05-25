@@ -1,26 +1,30 @@
 
+
 import { Schema, model } from 'mongoose';
-import { StudentModel, TGuardian, TLocalGuardian, TStudent, TUserName } from './student.controller';
+import { StudentModel, TGuardian, TLocalGuardian, TStudent, TUserName } from './student.interface';
 
 
-const userNameSchema = new Schema<TUserName>({
-  firstName: {
-    type: String,
-    required: [true, 'First Name is required'],
-    trim: true,
-    maxlength: [20, 'Name can not be more than 20 characters'],
-  },
-  middleName: {
-    type: String,
-    trim: true,
-  },
-  lastName: {
-    type: String,
-    trim: true,
-    required: [true, 'Last Name is required'],
-    maxlength: [20, 'Name can not be more than 20 characters'],
-  },
-});
+
+const userNameSchema = new Schema <TUserName> ({
+firstName:{
+  type:String,
+  required:[true,'First name is required '],
+  trim:true,
+  maxlength:[20,"Name can not more than 20 character"]
+},
+middleName:{
+  type:String,
+  trim:true
+},
+lastName:{
+  type:String,
+  required:[true,'First name is required '],
+  trim:true,
+  maxlength:[20,"Name can not more than 20 character"]
+}
+
+
+})
 
 const guardianSchema = new Schema<TGuardian>({
   fatherName: {
@@ -164,4 +168,4 @@ studentSchema.statics.isUserExists = async function (id: string) {
   return existingUser;
 };
 
-export const Student = model<TStudent, StudentModel>('Student', studentSchema);
+export const Student = model<TStudent, StudentModel>('student', studentSchema);

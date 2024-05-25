@@ -1,49 +1,22 @@
-import { Model, Types } from "mongoose";
+import { NextFunction,Response } from "express";
+import { getAllStudentSFromDB } from "./student.service";
+import sendResponse from "../../utils/sendResponse";
+import httpStatus from "http-status";
 
-export type TUserName = {
-    firstName: string;
-    middleName: string;
-    lastName: string;
-  };
-  
-  export type TGuardian = {
-    fatherName: string;
-    fatherOccupation: string;
-    fatherContactNo: string;
-    motherName: string;
-    motherOccupation: string;
-    motherContactNo: string;
-  };
-  
-  export type TLocalGuardian = {
-    name: string;
-    occupation: string;
-    contactNo: string;
-    address: string;
-  };
-  
-  export type TStudent = {
-    id: string;
-    user: Types.ObjectId;
-    password: string;
-    name: TUserName;
-    gender: 'male' | 'female' | 'other';
-    dateOfBirth?: string;
-    email: string;
-    contactNo: string;
-    emergencyContactNo: string;
-    bloodGroup?: 'A+' | 'A-' | 'B+' | 'B-' | 'AB+' | 'AB-' | 'O+' | 'O-';
-    presentAddress: string;
-    permanentAddress: string;
-    guardian: TGuardian;
-    localGuardian: TLocalGuardian;
-    profileImg?: string;
-    isDeleted: boolean;
-  };
-  
 
-//for creating static
 
-export interface StudentModel extends Model<TStudent> {
-    isUserExists(id: string): Promise<TStudent | null>;
+export const getAllStudent = async (req:Request,res:Response,next:NextFunction)=>{
+  try {
+    const result = await getAllStudentSFromDB();
+
+    sendResponse(res,{
+      statusCode:httpStatus.OK,
+      success:true,
+      message:'Student is retrieved successfully',
+      data:result
+    })
+
+  } catch (error) {
+    next(error)
   }
+}
