@@ -8,5 +8,7 @@ console.log('DB_URL:', process.env.DATABASE_URL); // Add this line
 
 export default {
     port:process.env.PORT,
-    db_url:process.env.DATABASE_URL
+    db_url:process.env.DATABASE_URL,
+    bcrypt_salt_rounds: process.env.BCRYPT_SALT_ROUNDS,
+    default_password: process.env.DEFAULT_PASS,
 }
