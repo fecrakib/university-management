@@ -15,3 +15,10 @@ export const getSingleStudentFromDB = async (id:string )=>{
     const result = await Student.findById(id);
     return result;
 }
+
+//single data deleted
+
+export const deletedStudentData = async (id:string)=>{
+    const result = await Student.findByIdAndDelete(id);
+    return result;
+}
