@@ -19,7 +19,7 @@ export type TMonths =
     name:TAcademicSemesterName;
     code:TAcademicSemesterCode;
     year:string;
-    startMoth:TMonths,
+    startMonth:TMonths,
     endMonth:TMonths;
 
   }
