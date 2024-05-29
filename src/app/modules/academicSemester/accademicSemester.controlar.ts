@@ -1,7 +1,7 @@
 import httpStatus from "http-status";
 import { catchAsync } from "../../utils/catchAsync";
 import sendResponse from "../../utils/sendResponse";
-import { createAcademicSemesterIntoDB, getAllAcademicSemesterFromDb, getSingleSemesterFromDb } from "./accamedicSemester.server";
+import { createAcademicSemesterIntoDB, getAllAcademicSemesterFromDb, getSingleSemesterFromDb, updateSemesterInDb } from "./accamedicSemester.server";
 import { Request, Response, NextFunction } from 'express';
 import { createAcademicSemesterValidationSchema } from "./accademicSemester.validation";
 
@@ -53,3 +53,16 @@ export const createAcademicSemester = catchAsync(async (req: Request, res: Respo
   });
 
  })
+
+ //update semester
+
+ export const updateAcademicSemester =  catchAsync(async(req,res)=>{
+  const {semesterId}= req.params;
+  const result = await updateSemesterInDb(semesterId,req.body)
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Academic semester is retrieved succesfully',
+    data: result,
+  });
+});
