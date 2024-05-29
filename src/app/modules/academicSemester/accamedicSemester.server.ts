@@ -17,3 +17,9 @@ export const createAcademicSemesterIntoDB = async (payload: TAcademicSemester) =
   export const getAllAcademicSemesterFromDb = async ()=>{
     return await AcademicSemester.find();
   }
+
+  // single semester get form db
+
+  export const getSingleSemesterFromDb = async (id:string)=>{
+    return await AcademicSemester.findById(id)
+  }

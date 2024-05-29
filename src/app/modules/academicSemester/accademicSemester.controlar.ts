@@ -1,7 +1,7 @@
 import httpStatus from "http-status";
 import { catchAsync } from "../../utils/catchAsync";
 import sendResponse from "../../utils/sendResponse";
-import { createAcademicSemesterIntoDB, getAllAcademicSemesterFromDb } from "./accamedicSemester.server";
+import { createAcademicSemesterIntoDB, getAllAcademicSemesterFromDb, getSingleSemesterFromDb } from "./accamedicSemester.server";
 import { Request, Response, NextFunction } from 'express';
 import { createAcademicSemesterValidationSchema } from "./accademicSemester.validation";
 
@@ -29,3 +29,27 @@ export const createAcademicSemester = catchAsync(async (req: Request, res: Respo
     });
 
   })
+
+ //get single semester by id
+ 
+ export const getSingleSemester = catchAsync(async(req,res)=>{
+
+  const {semesterId}=req.params;
+  const result = await getSingleSemesterFromDb(semesterId)
+  if (!result) {
+    return sendResponse(res, {
+      statusCode: httpStatus.NOT_FOUND,
+      success: false,
+      message: 'Academic semester not found',
+      data: null,
+    });
+  }
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Academic semester is retrieved succesfully',
+    data: result,
+  });
+
+ })
