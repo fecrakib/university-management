@@ -10,3 +10,10 @@ export const createAcademicSemesterIntoDB = async (payload: TAcademicSemester) =
     const result = await AcademicSemester.create(payload);
     return result;
   };
+  
+
+  //get all semester form db
+
+  export const getAllAcademicSemesterFromDb = async ()=>{
+    return await AcademicSemester.find();
+  }
