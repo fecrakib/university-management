@@ -1,3 +1,4 @@
+import { academicDepartmentSchema } from './../academicDepartment/academicDepartment.model';
 
 import { Model, Types } from 'mongoose';
 
@@ -41,6 +42,7 @@ export type TStudent = {
   profileImg?: string;
   admissionSemester:Types.ObjectId;
   isDeleted: boolean;
+  academicDepartment:Types.ObjectId;
 };
 
 //for creating static
