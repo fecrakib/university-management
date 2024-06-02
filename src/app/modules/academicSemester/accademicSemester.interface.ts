@@ -27,4 +27,4 @@ export type TMonths =
 
   export type TAcademicSemesterNameCodeMapper ={
     [key:string]:string;
-  }
+  };

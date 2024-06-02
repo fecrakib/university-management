@@ -1,7 +1,8 @@
 import { NextFunction,Request,Response } from "express-serve-static-core";
-import { createStudentIntoDB } from "./user.service";
+
 import sendResponse from "../../utils/sendResponse";
 import httpStatus from "http-status";
+import { createStudentIntoDB } from "./user.service";
 
 
 

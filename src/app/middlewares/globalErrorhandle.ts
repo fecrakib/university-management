@@ -1,14 +1,13 @@
-import { NextFunction, Request, Response } from 'express';
+import { ErrorRequestHandler, NextFunction, Request, Response } from 'express';
 
 
-export const globalErrorHandler = (
-    err:any,
-    req:Request,
-    res:Response,
-    next:NextFunction,
+export const globalErrorHandler:ErrorRequestHandler = (
+err,req,res,next
 )=>{
     const statusCode = 500;
-  const message = err.message || 'Something went wrong!';
+  const message = 'Something went wrong!';
+
+  let errorSources:
 
   return res.status(statusCode).json({
     success: false,
