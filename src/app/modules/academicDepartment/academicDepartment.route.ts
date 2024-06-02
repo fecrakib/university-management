@@ -11,9 +11,9 @@ const router = Router();
 
 router.post(
   '/create-academic-department',
-  validateRequest(
+   validateRequest(
     createAcademicDepartmentValidationSchema,
-  ),
+   ),
   createAcademicDepartment,
 );
 
